@@ -13,9 +13,9 @@ gen64() {
 }
 install_3proxy() {
     echo "installing 3proxy"
-    URL="https://github.com/dahia8888/multipv6/blob/main/3proxy-0.9.3.tar.gz"
+    URL="https://github.com/dahia8888/multipv6/blob/main/3proxy-0.9.2.x86_64.deb"
     wget -qO- $URL | bsdtar -xvf-
-    cd 3proxy-0.9.3
+    cd 3proxy-0.9.2.x86_64
     make -f Makefile.Linux
     mkdir -p /usr/local/etc/3proxy/bin
     mkdir -p /usr/local/etc/3proxy/logs
