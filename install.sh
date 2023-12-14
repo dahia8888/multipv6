@@ -1,3 +1,16 @@
+#
+# Install and configure 3proxy for Ubuntu 16.04 or Debian 9
+#
+
+# Update the system and install build tools + fail2ban
+apt update -y && apt upgrade -y && apt dist-upgrade -y
+apt autoremove -y && apt autoclean -y && apt clean -y
+apt -y install fail2ban software-properties-common
+apt install -y build-essential libevent-dev libssl-dev
+apt install -y build-essential wget tar
+#
+
+#
 #!/bin/sh
 random() {
 	tr </dev/urandom -dc A-Za-z0-9 | head -c5
@@ -11,15 +24,23 @@ gen64() {
 	}
 	echo "$1:$(ip64):$(ip64):$(ip64):$(ip64)"
 }
-apt install -y build-essential wget tar
+
 install_3proxy() {
     echo "installing 3proxy"
     #URL="https://github.com/dahia8888/multipv6/blob/main/3proxy-3proxy-0.8.6.tar.gz"
-    wget https://github.com/z3APA3A/3proxy/releases/download/0.9.3/3proxy-0.9.3.x86_64.deb; dpkg -i 3proxy-0.9.3.x86_64.deb
+    # wget https://github.com/z3APA3A/3proxy/releases/download/0.9.3/3proxy-0.9.3.x86_64.deb; dpkg -i 3proxy-0.9.3.x86_64.deb
     #wget -qO- $URL | bsdtar -xvf-
-    mkdir 3proxy
-    cd 3proxy
+    wget https://github.com/z3APA3A/3proxy/archive/0.8.12.tar.gz
+    tar xzvf 0.8.12.tar.gz 
+    cd 3proxy-0.8.12/
+    vim src/proxy.h 
+    cd ..
+    mv 3proxy-0.8.12/ /etc/
+    cd /etc/
+    mv 3proxy-0.8.12/ 3proxy
+    cd 3proxy/
     make -f Makefile.Linux
+    make -f Makefile.Linux install
     mkdir -p /usr/local/etc/3proxy/bin
     mkdir -p /usr/local/etc/3proxy/logs
     mkdir -p /usr/local/etc/3proxy/stat
@@ -49,7 +70,6 @@ $(awk -F "/" '{print "auth strong\n" \
 "flush\n"}' ${WORKDATA})
 EOF
 }
-
 gen_proxy_file_for_user() {
     cat >proxy.txt <<EOF
 $(awk -F "/" '{print $3 ":" $4 ":" $1 ":" $2 }' ${WORKDATA})
@@ -83,9 +103,10 @@ gen_ifconfig() {
 $(awk -F "/" '{print "ifconfig eth0 inet6 add " $5 "/64"}' ${WORKDATA})
 EOF
 }
+
 echo "installing apps"
 #yum -y install gcc net-tools bsdtar zip >/dev/null
-#yum -y 安装 gcc wget tar
+#yum -y install gcc wget tar
 apt install -y gcc net-tools wget tar >/dev/null
 
 install_3proxy
