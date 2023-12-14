@@ -15,7 +15,7 @@ apt install -y build-essential wget tar
 install_3proxy() {
     echo "installing 3proxy"
     #URL="https://github.com/dahia8888/multipv6/blob/main/3proxy-3proxy-0.8.6.tar.gz"
-    #wget https://github.com/z3APA3A/3proxy/releases/download/0.9.3/3proxy-0.9.3.x86_64.deb; dpkg -i 3proxy-0.9.3.x86_64.deb
+    wget https://github.com/z3APA3A/3proxy/releases/download/0.9.3/3proxy-0.9.3.x86_64.deb; dpkg -i 3proxy-0.9.3.x86_64.deb
     #wget -qO- $URL | bsdtar -xvf-
     mkdir 3proxy
     cd 3proxy
