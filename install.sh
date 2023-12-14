@@ -11,10 +11,12 @@ gen64() {
 	}
 	echo "$1:$(ip64):$(ip64):$(ip64):$(ip64)"
 }
+apt install -y build-essential wget tar
 install_3proxy() {
     echo "installing 3proxy"
-    wget https://github.com/z3APA3A/3proxy/releases/download/0.9.3/3proxy-0.9.3.x86_64.deb; dpkg -i 3proxy-0.9.3.x86_64.deb
- 
+    #URL="https://github.com/dahia8888/multipv6/blob/main/3proxy-3proxy-0.8.6.tar.gz"
+    #wget https://github.com/z3APA3A/3proxy/releases/download/0.9.3/3proxy-0.9.3.x86_64.deb; dpkg -i 3proxy-0.9.3.x86_64.deb
+    #wget -qO- $URL | bsdtar -xvf-
     mkdir 3proxy
     cd 3proxy
     make -f Makefile.Linux
@@ -82,7 +84,9 @@ $(awk -F "/" '{print "ifconfig eth0 inet6 add " $5 "/64"}' ${WORKDATA})
 EOF
 }
 echo "installing apps"
-yum -y install gcc net-tools bsdtar zip >/dev/null
+#yum -y install gcc net-tools bsdtar zip >/dev/null
+#yum -y 安装 gcc wget tar
+apt install -y gcc net-tools wget tar >/dev/null
 
 install_3proxy
 
