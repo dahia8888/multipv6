@@ -1,5 +1,5 @@
 # 1 下载安装包
-# wget https://github.com/z3APA3A/3proxy/archive/0.9.3.tar.gz
+wget https://github.com/z3APA3A/3proxy/archive/0.9.3.tar.gz
 #2  解压
 tar -xvf 0.9.3.tar.gz 
 #3 进入目录
