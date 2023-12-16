@@ -10,7 +10,6 @@ apt install -y build-essential libevent-dev libssl-dev
 apt install -y build-essential wget tar
 chmod a+x pro.sh 
 more pro.sh 
-
 #
 #!/bin/sh
 random() {
@@ -25,7 +24,6 @@ gen64() {
 	}
 	echo "$1:$(ip64):$(ip64):$(ip64):$(ip64)"
 }
-
 
 # systemctl start 3proxy
 # systemctl status 3proxy
