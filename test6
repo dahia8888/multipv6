@@ -10,6 +10,7 @@ apt install -y build-essential libevent-dev libssl-dev
 apt install -y build-essential wget tar
 chmod a+x pro.sh 
 more pro.sh 
+
 #
 #!/bin/sh
 random() {
@@ -24,6 +25,7 @@ gen64() {
 	}
 	echo "$1:$(ip64):$(ip64):$(ip64):$(ip64)"
 }
+
 
 # systemctl start 3proxy
 # systemctl status 3proxy
@@ -41,8 +43,8 @@ install_3proxy() {
     mkdir -p /usr/local/etc/3proxy/bin
     mkdir -p /usr/local/etc/3proxy/logs
     mkdir -p /usr/local/etc/3proxy/stat
-    cp /scripts/3proxy.cfg /usr/local/etc/3proxy/bin/
-    cp /scripts/init.d/3proxy.sh /etc/init.d/3proxy
+    cp /root/3proxy-0.9.3/scripts/3proxy.cfg /usr/local/etc/3proxy/bin/
+    cp /root/3proxy-0.9.3/scripts/init.d/3proxy.sh /etc/init.d/3proxy
     chmod +x /etc/init.d/3proxy
     chkconfig 3proxy on
     systemctl start 3proxy
