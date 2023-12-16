@@ -26,19 +26,20 @@ gen64() {
 	echo "$1:$(ip64):$(ip64):$(ip64):$(ip64)"
 }
 
-# ln -s /etc/3proxy/3proxy.cfg /etc/3proxy.cfg
-# vi /etc/3proxy.cfg
+
 # systemctl start 3proxy
 # systemctl status 3proxy
 install_3proxy() {
     echo "installing 3proxy"
     wget https://github.com/z3APA3A/3proxy/archive/0.9.3.tar.gz
     tar -xvf 0.9.3.tar.gz 
-    # cd 3proxy-0.9.3/
+    cd 3proxy-0.9.3/
     mkdir 3proxy
     cd 3proxy
     make -f Makefile.Linux
     make -f Makefile.Linux  install 
+    ln -s /etc/3proxy/3proxy.cfg /etc/3proxy.cfg
+    vi /etc/3proxy.cfg
     mkdir -p /usr/local/etc/3proxy/bin
     mkdir -p /usr/local/etc/3proxy/logs
     mkdir -p /usr/local/etc/3proxy/stat
