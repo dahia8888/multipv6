@@ -1,4 +1,0 @@
-apt update -y && apt upgrade -y && apt dist-upgrade -y
-apt autoremove -y && apt autoclean -y && apt clean -y
-apt -y install fail2ban software-properties-common
-apt install -y build-essential libevent-dev libssl-dev
