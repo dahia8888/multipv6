@@ -3,33 +3,13 @@ apt autoremove -y && apt autoclean -y && apt clean -y
 apt -y install fail2ban software-properties-common
 apt install -y build-essential libevent-dev libssl-dev
 apt install -y build-essential wget tar
-
-# 1 下载安装包
 wget https://github.com/z3APA3A/3proxy/archive/0.9.3.tar.gz
-#2  解压
 tar -xvf 0.9.3.tar.gz 
-#3 进入目录
 cd 3proxy-0.9.3/
-
 4 make –f Makefile.Linux
-# 编译
 make –f Makefile.Linux
-
-# 5安装
 make –f Makefile.Linux install
-
-# 6方便编辑配置文件 做个软链接
-# 其实这个也可以不用
 ln -s /etc/3proxy/3proxy.cfg /etc/3proxy.cfg
-
-# 7.修改代理参数(把需要的配置参数写到文件里面）
-
 vi /etc/3proxy/3proxy.cfg
-
-
-# 8.启动代理服务(redhat 7之后推荐这个命令 以前是service 启动的
 systemctl start 3proxy
-
-# 9.启动后查看代理状态
-
 systemctl status 3proxy
