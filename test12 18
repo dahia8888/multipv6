@@ -29,6 +29,7 @@ install_3proxy() {
     make -f Makefile.Linux
     make -f Makefile.Linux  install 
     ln -s /etc/3proxy/3proxy.cfg /etc/3proxy.cfg
+    vi /etc/3proxy.cfg
     mkdir -p /usr/local/etc/3proxy/bin
     mkdir -p /usr/local/etc/3proxy/logs
     mkdir -p /usr/local/etc/3proxy/stat
