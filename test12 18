@@ -7,6 +7,7 @@ apt install -y build-essential wget tar
 chmod a+x pro.sh 
 chmod +x /root/install.sh
 more pro.sh 
+
 random() {
 	tr </dev/urandom -dc A-Za-z0-9 | head -c5
 	echo
