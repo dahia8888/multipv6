@@ -55,20 +55,21 @@ install_3proxy() {
 gen_3proxy() {
     cat <<EOF
 daemon                                                                    
-maxconn 1000                                                               
+maxconn 1000                                                              
 nscache 65536                                                             
 timeouts 1 5 30 60 180 1800 15 60                                          
 setgid 65535                                                                
 setuid 65535                                                               
 flush
 auth strong
+deny * * 127.0.0.1
+allow * * * 80 HTTP
+allow * * * 443 HTTPS
+socks -n -p<listening_port> -a
 
 users $(awk -F "/" 'BEGIN{ORS="";} {print $1 ":CL:" $2 " "}' ${WORKDATA})  
 
-$(awk -F "/" '{print "auth strong\n" \
-"allow " $1 "\n" \                                                          
-"proxy -6 -n -a -p" $4 " -i" $3 " -e"$5"\n" \                              
-"flush\n"}' ${WORKDATA})                                                   
+$(awk -F "/" '{print "auth strong\n" \"allow " $1 "\n" \"proxy -6 -n -a -p" $4 " -i" $3 " -e"$5"\n" \"flush\n"}' ${WORKDATA})                                                   
 EOF
 }
 gen_proxy_file_for_user() {                                                
