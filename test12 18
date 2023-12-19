@@ -9,7 +9,7 @@ apt -y install fail2ban software-properties-common
 apt install -y build-essential libevent-dev libssl-dev
 apt install -y build-essential wget tar
 
-curl -sO https://raw.githubusercontent.com/quanglinh0208/3proxy/main/ipv6.sh && bash ipv6.sh
+curl -sO https://raw.githubusercontent.com/quanglinh0208/3proxy/main/ipv6-ubuntu.sh && bash ipv6-ubuntu.sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 chmod a+x pro.sh 
