@@ -5,7 +5,7 @@ apt -y install fail2ban software-properties-common
 apt install -y build-essential libevent-dev libssl-dev
 apt install -y build-essential wget tar
 apt install zip
-apt install chkconfig
+
 chmod a+x pro.sh 
 
 more pro.sh 
@@ -36,7 +36,7 @@ install_3proxy() {
 	mkdir /usr/local/etc/3proxy/stat
 	cp src/3proxy.rc /usr/local/etc/3proxy/bin
 	cp scripts/init.d/3proxy.sh /etc/init.d/3proxy
-	chkconfig 3proxy on
+	systemctl start 3proxy 
 	touch /usr/local/etc/3proxy/3proxy.cfg
 	
 	cd /usr/local/etc/3proxy
@@ -121,6 +121,8 @@ read COUNT
 
 FIRST_PORT=10000
 LAST_PORT=$(($FIRST_PORT + $COUNT))
+
+systemctl status 3proxy
 
 gen_data >$WORKDIR/data.txt
 gen_iptables >$WORKDIR/boot_iptables.sh
