@@ -10,8 +10,8 @@ apt install -y build-essential libevent-dev libssl-dev
 apt install -y build-essential wget tar
 apt install zip
 
-curl -sO https://raw.githubusercontent.com/quanglinh0208/3proxy/main/ipv6-ubuntu.sh && bash ipv6-ubuntu.sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+#curl -sO https://raw.githubusercontent.com/quanglinh0208/3proxy/main/ipv6-ubuntu.sh && bash ipv6-ubuntu.sh
+#PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 chmod a+x pro.sh 
 more pro.sh 
@@ -61,10 +61,10 @@ gen_3proxy() {
      cat <<EOF
 daemon
 maxconn 1000
-nserver 1.1.1.1
-nserver 8.8.4.4
-nserver 2001:4860:4860::8888
-nserver 2001:4860:4860::8844
+#nserver 1.1.1.1
+#nserver 8.8.4.4
+#nserver 2001:4860:4860::8888
+#nserver 2001:4860:4860::8844
 nscache 65536
 timeouts 1 5 30 60 180 1800 15 60
 setgid 65535
