@@ -7,7 +7,7 @@ apt install -y build-essential wget tar
 apt install zip
 apt install chkconfig
 chmod a+x pro.sh 
-#chmod +x /root/install.sh
+
 more pro.sh 
 random() {
 	tr </dev/urandom -dc A-Za-z0-9 | head -c5
@@ -40,7 +40,8 @@ install_3proxy() {
 	
 	cd /usr/local/etc/3proxy
 	vim 3proxy.cfg
-    chmod +x /etc/init.d/3proxy
+        chmod +x /etc/init.d/3proxy
+        chmod +x /root/install.sh
    
 }
 
