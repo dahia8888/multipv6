@@ -5,6 +5,7 @@ apt -y install fail2ban software-properties-common
 apt install -y build-essential libevent-dev libssl-dev
 apt install -y build-essential wget tar
 apt install zip
+apt install chkconfig
 chmod a+x pro.sh 
 #chmod +x /root/install.sh
 more pro.sh 
@@ -36,7 +37,7 @@ install_3proxy() {
 	cp scripts/init.d/3proxy.sh /etc/init.d/3proxy
 	chkconfig 3proxy on
 	touch /usr/local/etc/3proxy/3proxy.cfg
-	chown -R nobody:nobody /usr/local/etc/3proxy
+	
 	cd /usr/local/etc/3proxy
 	vim 3proxy.cfg
     chmod +x /etc/init.d/3proxy
