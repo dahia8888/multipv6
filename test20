@@ -55,10 +55,8 @@ timeouts 1 5 30 60 180 1800 15 60
 setgid 65535
 setuid 65535
 flush
-auth strong
-allow SOCKS connection to all ports
-allow * * * 1-65535 CONNECT
-allow * * * 1-65535 HTTPS
+auth no
+SOCKS 
 users $(awk -F "/" 'BEGIN{ORS="";} {print $1 ":CL:" $2 " "}' ${WORKDATA})
 
 $(awk -F "/" '{print "auth strong\n" \
