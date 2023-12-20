@@ -53,14 +53,18 @@ maxconn 1000
 nscache 65536
 nserver 127.0.0.53
 
+deny * * 127.0.0.0/8,192.168.1.1
+
+socks -n -p3388 -a
+proxy -n -p4455 -a
+
 timeouts 1 5 30 60 180 1800 15 60
 setgid 65535
 setuid 65535
 flush
 auth no
-SOCKS 
-users $(awk -F "/" 'BEGIN{ORS="";} {print $1 ":CL:" $2 " "}' ${WORKDATA})
 
+users $(awk -F "/" 'BEGIN{ORS="";} {print $1 ":CL:" $2 " "}' ${WORKDATA})
 $(awk -F "/" '{print "auth strong\n" \
 "allow " $1 "\n" \
 "proxy -6 -n -a -p" $4 " -i" $3 " -e"$5"\n" \
