@@ -38,7 +38,7 @@ install_3proxy() {
 	cp scripts/init.d/3proxy.sh /etc/init.d/3proxy
 	systemctl start 3proxy 
 	touch /usr/local/etc/3proxy/3proxy.cfg
-	
+	chmod 755 /usr/local/etc/3proxy
 	cd /usr/local/etc/3proxy
 	vim 3proxy.cfg
         chmod +x /etc/init.d/3proxy
@@ -52,8 +52,14 @@ daemon
 maxconn 1000
 nscache 65536
 nserver 127.0.0.53
+external 185.81.28.140
+internal 185.81.28.140
 
 deny * * 127.0.0.0/8,192.168.1.1
+allow * * * 80-88,8080-8088 HTTP
+allow * * * 443,8443 HTTPS
+allow * * * 1-65535 HTTP
+allow * * * 1-65535 HTTPS
 
 socks -n -p3388 -a
 proxy -n -p4455 -a
@@ -62,7 +68,7 @@ timeouts 1 5 30 60 180 1800 15 60
 setgid 65535
 setuid 65535
 flush
-auth no
+auth strong
 
 users $(awk -F "/" 'BEGIN{ORS="";} {print $1 ":CL:" $2 " "}' ${WORKDATA})
 $(awk -F "/" '{print "auth strong\n" \
