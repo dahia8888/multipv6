@@ -1,13 +1,5 @@
 #!/bin/sh
-apt update -y && apt upgrade -y && apt dist-upgrade -y
-apt autoremove -y && apt autoclean -y && apt clean -y
-apt -y install fail2ban software-properties-common
-apt install -y build-essential libevent-dev libssl-dev
-apt install -y build-essential wget tar
-apt install zip
-touch pro.sh
-chmod a+x pro.sh 
-more pro.sh 
+ 
 random() {
 	tr </dev/urandom -dc A-Za-z0-9 | head -c5
 	echo
@@ -23,22 +15,8 @@ gen64() {
 
 install_3proxy() {
     echo "installing 3proxy"
-    wget https://github.com/3proxy/3proxy/archive/refs/tags/0.9.4.tar.gz
-    tar -xvf 0.9.4.tar.gz
-	cd 0.9.4.tar.gz
-        chmod +x /root/install.sh
-	make -f Makefile.Linux
-	make -f Makefile.Linux  install 
-	mkdir /usr/local/etc/3proxy
-	mkdir /usr/local/etc/3proxy/bin
-	mkdir /usr/local/etc/3proxy/logs
-	mkdir /usr/local/etc/3proxy/stat
-	cp src/3proxy.rc /usr/local/etc/3proxy/bin
-	cp scripts/init.d/3proxy.sh /etc/init.d/3proxy
-	systemctl start 3proxy 
-	touch /usr/local/etc/3proxy/3proxy.cfg
-	chmod 755 /usr/local/etc/3proxy
-	cd /usr/local/etc/3proxy
+    wget https://github.com/3proxy/3proxy/releases/download/0.9.4/3proxy-0.9.4.x86_64.deb; dpkg -i 3proxy-0.9.4.x86_64.deb
+    
 	vim 3proxy.cfg
         chmod +x /etc/init.d/3proxy
         cd $WORKDIR
