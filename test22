@@ -1,13 +1,13 @@
 #!/bin/sh
-# apt update -y && apt upgrade -y && apt dist-upgrade -y
-# apt autoremove -y && apt autoclean -y && apt clean -y
-# apt -y install fail2ban software-properties-common
-# apt install -y build-essential libevent-dev libssl-dev
-# apt install -y build-essential wget tar
-# apt install zip
-# touch pro.sh
-# chmod a+x pro.sh 
-# more pro.sh 
+apt update -y && apt upgrade -y && apt dist-upgrade -y
+apt autoremove -y && apt autoclean -y && apt clean -y
+apt -y install fail2ban software-properties-common
+apt install -y build-essential libevent-dev libssl-dev
+apt install -y build-essential wget tar
+apt install zip
+touch pro.sh
+chmod a+x pro.sh 
+more pro.sh 
 random() {
 	tr </dev/urandom -dc A-Za-z0-9 | head -c5
 	echo
