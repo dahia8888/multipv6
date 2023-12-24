@@ -1,7 +1,7 @@
 #!/bin/sh
 apt update -y && apt upgrade -y && apt dist-upgrade -y
 apt-get install gcc make git -y
-apt install -y gcc net-tools wget tar >/dev/null
+
 apt autoremove -y && apt autoclean -y && apt clean -y
 apt -y install fail2ban software-properties-common
 apt install -y build-essential libevent-dev libssl-dev
@@ -102,6 +102,9 @@ $(awk -F "/" '{print "ifconfig '$main_interface' inet6 add " $5 "/64"}' ${WORKDA
 EOF
 }
 
+echo "installing apps"
+apt install -y gcc net-tools wget tar >/dev/null
+
 install_3proxy
 echo "working folder = /home/proxy-installer"
 WORKDIR="/home/proxy-installer"
@@ -132,9 +135,8 @@ ifconfig ${main_interface} up
 bash ${WORKDIR}/boot_iptables.sh
 bash ${WORKDIR}/boot_ifconfig.sh
 ulimit -n 65535
-/root/3proxy-0.9.3/bin/3proxy
-/usr/local/etc/3proxy/3proxy.cfg 
-
+/root/3proxy-0.9.3/bin/3proxy /usr/local/etc/3proxy/3proxy.cfg 
+systemctl start 3proxy  
 EOF
 
 bash /etc/rc.local
