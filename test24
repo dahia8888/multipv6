@@ -68,6 +68,13 @@ gen_3proxy() {
     "flush\n"}' ${WORKDATA})
 EOF
 }
+gen_netplan() {
+    cat <<EOF
+    [keyfile]
+    # devices managed by networkd
+    unmanaged-devices+=interface-name:ens3,mac:bc:24:11:1b:c0:be,except:type:ethernet
+EOF
+}
 
 gen_proxy_file_for_user() {
     cat >proxy.txt <<EOF
@@ -131,9 +138,10 @@ touch /etc/rc.local
 chmod +x $WORKDIR/boot_*.sh /etc/rc.local
 
 gen_3proxy >/usr/local/etc/3proxy/3proxy.cfg
+gen_netplan >/run/NetworkManager/conf.d/netplan.conf
 
 cat >>/etc/rc.local <<EOF
-sudo service network-manager start
+sudo service network-manager restart
 ifconfig ${main_interface} up
 bash ${WORKDIR}/boot_iptables.sh
 bash ${WORKDIR}/boot_ifconfig.sh
