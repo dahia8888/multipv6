@@ -40,6 +40,7 @@ install_3proxy() {
 	cp src/3proxy.rc /usr/local/etc/3proxy/bin
 	cp scripts/init.d/3proxy.sh /etc/init.d/3proxy
 	touch /usr/local/etc/3proxy/3proxy.cfg
+    chmod +x  /usr/local/etc/3proxy/3proxy.cfg
     chmod 755 /usr/local/etc/3proxy               
 	cd /usr/local/etc/3proxy
     chmod +x /etc/init.d/3proxy
