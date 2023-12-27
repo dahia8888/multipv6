@@ -37,6 +37,8 @@ install_3proxy() {
 	mkdir /usr/local/etc/3proxy/bin
 	mkdir /usr/local/etc/3proxy/logs
 	mkdir /usr/local/etc/3proxy/stat
+	cp bin/3proxy /usr/local/etc/3proxy/bin
+	chmod 755 /usr/local/etc/3proxy/bin/3proxy
 	cp src/3proxy.rc /usr/local/etc/3proxy/bin
 	cp scripts/init.d/3proxy.sh /etc/init.d/3proxy
 	touch /usr/local/etc/3proxy/3proxy.cfg
@@ -146,7 +148,7 @@ ifconfig ${main_interface} up
 bash ${WORKDIR}/boot_iptables.sh
 bash ${WORKDIR}/boot_ifconfig.sh
 ulimit -n 65535
-
+#/usr/local/etc/3proxy/bin/3proxy.rc /usr/local/etc/3proxy/3proxy.cfg &
 /usr/local/etc/3proxy/bin/3proxy /usr/local/etc/3proxy/3proxy.cfg &
 systemctl start 3proxy  
 EOF
