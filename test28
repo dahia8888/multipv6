@@ -146,7 +146,7 @@ touch /etc/rc.local
 chmod +x $WORKDIR/boot_*.sh /etc/rc.local
 
 gen_3proxy >/usr/local/etc/3proxy/3proxy.cfg
-ln -sv  /usr/local/etc/3proxy/3proxy.cfg   /etc/3proxy/3proxy.cfg
+\cp  /usr/local/etc/3proxy/3proxy.cfg   /etc/3proxy/3proxy.cfg
 gen_netplan >/run/NetworkManager/conf.d/netplan.conf
 
 cat >>/etc/rc.local <<EOF
