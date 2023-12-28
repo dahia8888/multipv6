@@ -27,10 +27,7 @@ gen64() {
 
 install_3proxy() {
     echo "installing 3proxy"
-   if [ ! -f "/root/0.9.3.tar.gz" ];then
-	echo "3proxy  soft isnt exist!"
     wget https://github.com/z3APA3A/3proxy/archive/0.9.3.tar.gz
-	fi
     tar -xvf 0.9.3.tar.gz 
 	cd 3proxy-0.9.3
     chmod +x /root/install.sh
@@ -40,6 +37,8 @@ install_3proxy() {
 	mkdir /usr/local/etc/3proxy/bin
 	mkdir /usr/local/etc/3proxy/logs
 	mkdir /usr/local/etc/3proxy/stat
+	cp bin/3proxy /usr/local/etc/3proxy/bin
+	chmod 755 /usr/local/etc/3proxy/bin/3proxy
 	cp src/3proxy.rc /usr/local/etc/3proxy/bin
     cp scripts/3proxy.service  /usr/lib/systemd/3proxy.service
     chmod +x /usr/lib/systemd/3proxy.service
@@ -81,9 +80,6 @@ EOF
 }
 
 gen_proxy_file_for_user() {
-    pwd
-	WORKDIR="/home/proxy-installer"
-    WORKDATA="${WORKDIR}/data.txt"
     cat >proxy.txt <<EOF
     $(awk -F "/" '{print $3 ":" $4 ":" $1 ":" $2 }' ${WORKDATA})
 EOF
@@ -121,7 +117,6 @@ echo "installing apps"
 apt install -y gcc net-tools wget tar >/dev/null
 
 install_3proxy
-
 echo "working folder = /home/proxy-installer"
 WORKDIR="/home/proxy-installer"
 WORKDATA="${WORKDIR}/data.txt"
