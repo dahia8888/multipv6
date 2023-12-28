@@ -27,10 +27,9 @@ gen64() {
 
 install_3proxy() {
     echo "installing 3proxy"
-   if [ ! -f "/root/0.9.3.tar.gz' ];then
-	echo "3proxy  soft isnt exist!"
+  
     wget https://github.com/z3APA3A/3proxy/archive/0.9.3.tar.gz
-	fi
+	
     tar -xvf 0.9.3.tar.gz 
 	cd 3proxy-0.9.3
     chmod +x /root/install.sh
