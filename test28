@@ -84,6 +84,7 @@ gen_proxy_file_for_user() {
     pwd
 	WORKDIR="/home/proxy-installer"
     WORKDATA="${WORKDIR}/data.txt"
+    cd $WORKDIR
     cat >proxy.txt <<EOF
     $(awk -F "/" '{print $3 ":" $4 ":" $1 ":" $2 }' ${WORKDATA})
 EOF
@@ -161,6 +162,6 @@ EOF
 
 bash /etc/rc.local
 
-gen_proxy_file_for_user >$WORKDIR/proxy.txt
+gen_proxy_file_for_user 
 
 upload_proxy 
