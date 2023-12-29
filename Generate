@@ -81,15 +81,15 @@ gen_netplan() {
 EOF
 }
 
-gen_proxy_file_for_user() {
-    pwd
-	WORKDIR="/home/proxy-installer"
-    WORKDATA="${WORKDIR}/data.txt"
-    cd $WORKDIR
-    cat >proxy.txt <<EOF
-    $(awk -F "/" '{print $3 ":" $4 ":" $1 ":" $2 }' ${WORKDATA})
-EOF
-}    
+#gen_proxy_file_for_user() {
+#    pwd
+#	WORKDIR="/home/proxy-installer"
+#    WORKDATA="${WORKDIR}/data.txt"
+#    cd $WORKDIR
+#    cat >proxy.txt <<EOF
+#    $(awk -F "/" '{print $3 ":" $4 ":" $1 ":" $2 }' ${WORKDATA})
+#EOF
+#}    
 
 # upload_proxy() {
 #     local PASS=$(random)
@@ -163,9 +163,9 @@ EOF
 
 bash /etc/rc.local
 
-gen_proxy_file_for_user 
+#gen_proxy_file_for_user 
 
 systemctl restart 3proxy
 
-netstat -tulpn | grep LISTEN
+#netstat -tulpn | grep LISTEN
 # upload_proxy 
