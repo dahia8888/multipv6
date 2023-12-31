@@ -152,6 +152,7 @@ gen_3proxy >/usr/local/etc/3proxy/3proxy.cfg
 \cp  /usr/local/etc/3proxy/3proxy.cfg   /etc/3proxy/3proxy.cfg
 mkdir /run/NetworkManager/conf.d
 touch /run/NetworkManager/conf.d/netplan.conf
+chmod +x /run/NetworkManager/conf.d/netplan.conf
 gen_netplan >/run/NetworkManager/conf.d/netplan.conf
 
 cat >>/etc/rc.local <<EOF
