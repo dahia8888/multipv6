@@ -73,6 +73,7 @@ gen_3proxy() {
     "flush\n"}' ${WORKDATA})
 EOF
 }
+
 gen_netplan() {
     cat <<EOF
     [keyfile]
@@ -149,6 +150,7 @@ chmod +x $WORKDIR/boot_*.sh /etc/rc.local
 
 gen_3proxy >/usr/local/etc/3proxy/3proxy.cfg
 \cp  /usr/local/etc/3proxy/3proxy.cfg   /etc/3proxy/3proxy.cfg
+touch /run/NetworkManager/conf.d/netplan.conf
 gen_netplan >/run/NetworkManager/conf.d/netplan.conf
 
 cat >>/etc/rc.local <<EOF
