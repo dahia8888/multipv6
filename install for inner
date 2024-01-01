@@ -17,7 +17,7 @@ random() {
 }
 
 array=(1 2 3 4 5 6 7 8 9 0 a b c d e f)
-main_interface=$(ip route get 8.8.8.8 | awk -- '{printf $5}')
+main_interface=$(ip link | awk 'NR==5{print substr($2,1,4)}')
 
 gen32() {
 	ip64() {
@@ -79,7 +79,7 @@ gen_netplan() {
     cat <<EOF
     [keyfile]
     # devices managed by networkd
-    unmanaged-devices+=interface-name:ens3,mac:5e:b1:ef:81:9b:69,except:type:ethernet
+    unmanaged-devices+=interface-name:ens3,mac:b2:fe:8d:06:0f:7d,except:type:ethernet
 EOF
 }
 
