@@ -78,7 +78,7 @@ gen_netplan() {
     cat <<EOF
     [keyfile]
     # devices managed by networkd
-    unmanaged-devices+=interface-name:ens3,mac:bc:24:11:1b:c0:be,except:type:ethernet
+    unmanaged-devices+=interface-name:ens3,mac:5e:b1:ef:81:9b:69 ,except:type:ethernet
 EOF
 }
 
