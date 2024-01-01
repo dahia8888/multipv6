@@ -4,7 +4,7 @@ apt autoremove -y && apt autoclean -y && apt clean -y
 sudo apt-get install network-manager
 apt -y install fail2ban software-properties-common
 apt install -y build-essential libevent-dev libssl-dev
-apt install -y build-essential wget tar
+apt install -y build-essential wget tar 
 apt install zip
 apt-get install ifupdown
 touch pro.sh
