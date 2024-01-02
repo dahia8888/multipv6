@@ -156,7 +156,7 @@ chmod +x /run/NetworkManager/conf.d/netplan.conf
 gen_netplan >/run/NetworkManager/conf.d/netplan.conf
 
 cat >>/etc/rc.local <<EOF
-sudo service network-manager restart
+sudo systemctl restart NetworkManager
 ifconfig ${main_interface} up
 bash ${WORKDIR}/boot_iptables.sh
 bash ${WORKDIR}/boot_ifconfig.sh
