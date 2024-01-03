@@ -53,6 +53,7 @@ install_3proxy() {
 
 gen_3proxy() {
     cat <<EOF
+    log    /var/log/3proxy/3proxy.log d 
     daemon
     maxconn 1000
     nserver 1.1.1.1
@@ -65,6 +66,8 @@ gen_3proxy() {
     setgid 65535
     setuid 65535
     stacksize 6291456
+    logformat "- +_L%t.%.  %N.%p %E %U %C:%c %R:%r %O %I %h %T"
+    #admin -p8060
     flush
     auth none
     users $(awk -F "/" 'BEGIN{ORS="";} {print $1 ":CL:" $2 " "}' ${WORKDATA})
@@ -156,6 +159,7 @@ chmod +x /run/NetworkManager/conf.d/netplan.conf
 gen_netplan >/run/NetworkManager/conf.d/netplan.conf
 
 cat >>/etc/rc.local <<EOF
+#!/bin/bash
 sudo systemctl restart NetworkManager
 ifconfig ${main_interface} up
 bash ${WORKDIR}/boot_iptables.sh
