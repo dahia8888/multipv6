@@ -154,6 +154,7 @@ sed -i '2i log    /var/log/3proxy/3proxy.log d ' /usr/local/etc/3proxy/3proxy.cf
 gen_netplan >/run/NetworkManager/conf.d/netplan.conf
 
 cat >>/etc/rc.local <<EOF
+#!/bin/bash
 sudo service network-manager restart
 ifconfig ${main_interface} up
 bash ${WORKDIR}/boot_iptables.sh
