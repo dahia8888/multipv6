@@ -63,7 +63,7 @@ gen_3proxy() {
     setgid 65535
     setuid 65535
     stacksize 6291456
-    log /tmp/3proxy.log 
+    log /var/log/3proxy/3proxy.log
     logformat "- +_L%t.%.  %N.%p %E %U %C:%c %R:%r %O %I %h %T"
     #admin -p8060
     flush
